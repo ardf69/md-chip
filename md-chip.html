@@ -1,0 +1,97 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<!--
+    Material design: [Chips](https://material.google.com/components/chips.htm)
+
+    The `<md-chip>` implements the material design single line chip.
+-->
+<dom-module id="md-chip">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+            }
+
+            #container {
+                display: inline-block;
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                background-color: var(--md-chip-background-color, --divider-color);
+                border-radius: 16px;
+                box-sizing: border-box;
+                color: var(--md-chip-color, --secondary-text-color);
+                height: 32px;
+                width: auto;
+            }
+            #container:hover {
+                background-color: var(--md-chip-background-color-hover, --secondary-text-color);
+                color: var(--md-chip-color-hover, --primary-background-color);
+            }
+            #empty {
+                display: inline-block;
+                width: 12px;
+            }
+            #label {
+                font: var(--paper-font-menu);
+            }
+            #remove {
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+        </style>
+
+        <div>
+            <div id="container">
+                <div id="empty">&nbsp;</div>
+                <template is="dom-if" if="[[label]]">
+                    <div id="label">[[label]]</div>
+                </template>
+                <template is="dom-if" if="[[removable]]">
+                    <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+                </template>
+                <template is="dom-if" if="[[!removable]]">
+                    <div id="empty">&nbsp;</div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+
+                is: 'md-chip',
+
+                properties: {
+                    label: {
+                        type: String,
+                        value: null
+                    },
+                    removable: {
+                        type: Boolean,
+                        value: false
+                    }
+                },
+
+                attached: function() {
+                },
+                attributeChanged: function(name, type) {
+                },
+                detached: function() {
+                },
+                ready: function() {
+                },
+
+                _remove: function() {
+                    this.fire('remove', { value: this.label });
+                },
+            });
+        })();
+    </script>
+</dom-module>
