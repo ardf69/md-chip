@@ -25,11 +25,16 @@
                 box-sizing: border-box;
                 color: var(--md-chip-color, --secondary-text-color);
                 height: 32px;
+                white-space: nowrap;
                 width: auto;
             }
             #container:hover {
                 background-color: var(--md-chip-background-color-hover, --secondary-text-color);
                 color: var(--md-chip-color-hover, --primary-background-color);
+            }
+            #container[checked] {
+                background-color: var(--md-chip-background-color-checked, --paper-cyan-500);
+                color: var(--md-chip-color-checked, white);
             }
             #empty {
                 display: inline-block;
@@ -44,19 +49,17 @@
             }
         </style>
 
-        <div>
-            <div id="container">
+        <div id="container" on-tap="_onConatinerTap">
+            <div id="empty">&nbsp;</div>
+            <template is="dom-if" if="[[label]]">
+                <div id="label">[[label]]</div>
+            </template>
+            <template is="dom-if" if="[[removable]]">
+                <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+            </template>
+            <template is="dom-if" if="[[!removable]]">
                 <div id="empty">&nbsp;</div>
-                <template is="dom-if" if="[[label]]">
-                    <div id="label">[[label]]</div>
-                </template>
-                <template is="dom-if" if="[[removable]]">
-                    <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
-                </template>
-                <template is="dom-if" if="[[!removable]]">
-                    <div id="empty">&nbsp;</div>
-                </template>
-            </div>
+            </template>
         </div>
     </template>
 
@@ -69,6 +72,17 @@
                 is: 'md-chip',
 
                 properties: {
+                    checkable: {
+                        observer: '_checkableChanged',
+                        type: Boolean,
+                        value: false
+                    },
+                    checked: {
+                        notify: true,
+                        observer: '_checkableChanged',
+                        type: Boolean,
+                        value: false
+                    },
                     label: {
                         type: String,
                         value: null
@@ -88,6 +102,19 @@
                 ready: function() {
                 },
 
+                _checkableChanged: function() {
+                    if (this.checkable && this.checked) {
+                        this.$.container.setAttribute('checked','checked');
+                    } else {
+                        this.$.container.removeAttribute('checked');
+                    }
+                },
+                _onConatinerTap: function() {
+                    if (this.checkable) {
+                        this.checked = !this.checked;
+                    }
+                    this._checkableChanged();
+                },
                 _remove: function() {
                     this.fire('remove', { value: this.label });
                 },

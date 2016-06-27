@@ -7,11 +7,10 @@
 <!--
     Material design: [Chips](https://material.google.com/components/chips.htm)
 
-    The `<mad-chip>` implements the material design single line chip.
+    The `<mad-contact-chip-item>` implements the material design single line chip.
 -->
-<dom-module id="md-chip-item">
-    <template>
-    </template>
+<dom-module id="md-contact-chip-item">
+    <template></template>
 
     <script>
         (function () {
@@ -19,9 +18,14 @@
 
             Polymer({
 
-                is: 'md-chip-item',
+                is: 'md-contact-chip-item',
 
                 properties: {
+                    extra: {
+                        notify: true,
+                        type: String,
+                        value: null
+                    },
                     image: {
                         notify: true,
                         type: String,
