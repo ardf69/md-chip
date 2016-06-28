@@ -1,38 +1,26 @@
-# \<md-chip\>
+##&lt;md-chip&gt;
 
-An implementation of the material design chip
+Material design: [Chips](https://material.google.com/components/chips.htm)
 
-## Install the Polymer-CLI
+`<md-chip>` implements the material design chip. The following is the example
+of the `<md-chip>` usage
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
-
-## Viewing Your Application
-
-```
-$ polymer serve
-```
-
-## Building Your Application
-
-```
-$ polymer build
+```html
+<md-chip label="normal"></md-chip>
+<md-chip label="removable chip" removable></md-chip>
+<md-chip checkable label="checkable chip"></md-chip>
+<md-chip checkable checked label="checkable chip checked"></md-chip>
 ```
 
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
+### Styling
 
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
+The following custom properties and mixins are available for styling:
 
-```
-$ polymer serve build/bundled
-```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+| Custom property | Description | Default |
+| --- | --- | --- |
+| `--md-chip-background-color` | Default background color | `--divider-color` |
+| `--md-chip-color` | Default foreground color | `--secondary-text-color` |
+| `--md-chip-background-color-hover` | Hover background color | `--secondary-text-color` |
+| `--md-chip-color-hover` | Hover foreground color | `--primary-background-color` |
+| `--md-chip-background-color-checked` | Chip checked background color | `--paper-cyan-500` |
+| `--md-chip-color-checked` | Chip checked foreground color | `white` |
