@@ -1,6 +1,13 @@
 {
     "name": "md-chip",
     "description": "An implementation of the material design chip",
+    "keywords": [
+        "web-component",
+        "web-components",
+        "polymer",
+        "chip",
+        "md-chip"
+    ],
     "main": "all-imports.html",
     "dependencies": {
         "iron-icon": "PolymerElements/iron-icon#^1.0.8",
