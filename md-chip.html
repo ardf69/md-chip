@@ -5,9 +5,30 @@
 <link rel="import" href="../paper-styles/typography.html">
 
 <!--
+    ## &lt;md-chip&gt;
+
     Material design: [Chips](https://material.google.com/components/chips.htm)
 
-    The `<md-chip>` implements the material design single line chip.
+    `<md-chip>` implements the material design chip. The following is the example
+    of the `<md-chip>` usage
+
+    ```html
+    <md-chip label="normal"></md-chip>
+    <md-chip label="removable chip" removable></md-chip>
+    ```
+
+    ### Styling
+
+    The following custom properties are available for styling:
+
+    | Custom property | Description | Default |
+    | --- | --- | --- |
+    | `--md-chip-background-color` | Background color | `--paper-grey-300` |
+    | `--md-chip-color` | Foreground color | `--paper-grey-600` |
+    | `--md-chip-remove-color` | Remove button foreground color | `--paper-grey-500` |
+    | `--md-chip-background-color-hover` | Hover background color | `--paper-grey-600` |
+    | `--md-chip-color-hover` | Hover foreground color | `--paper-grey-300` |
+    | `--md-chip-remove-color-hover` | Remove button hover foreground color | `--paper-grey-300` |
 -->
 <dom-module id="md-chip">
     <template>
@@ -29,11 +50,11 @@
                 width: auto;
             }
             #container:hover {
-                background-color: var(--md-chip-color, --paper-grey-600);
-                color: var(--md-chip-background-color, --paper-grey-300);
+                background-color: var(--md-chip-background-color-hover, --paper-grey-600);
+                color: var(--md-chip-color-hover, --paper-grey-300);
             }
             #container:hover > #remove {
-                color: var(--md-chip-background-color, --paper-grey-300);
+                color: var(--md-chip-remove-color-hover, --paper-grey-300);
             }
             #empty {
                 display: inline-block;

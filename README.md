@@ -1,4 +1,4 @@
-##&lt;md-chip&gt;
+## &lt;md-chip&gt;
 
 Material design: [Chips](https://material.google.com/components/chips.htm)
 
@@ -8,19 +8,17 @@ of the `<md-chip>` usage
 ```html
 <md-chip label="normal"></md-chip>
 <md-chip label="removable chip" removable></md-chip>
-<md-chip checkable label="checkable chip"></md-chip>
-<md-chip checkable checked label="checkable chip checked"></md-chip>
 ```
 
 ### Styling
 
-The following custom properties and mixins are available for styling:
+The following custom properties are available for styling:
 
 | Custom property | Description | Default |
 | --- | --- | --- |
-| `--md-chip-background-color` | Default background color | `--divider-color` |
-| `--md-chip-color` | Default foreground color | `--secondary-text-color` |
-| `--md-chip-background-color-hover` | Hover background color | `--secondary-text-color` |
-| `--md-chip-color-hover` | Hover foreground color | `--primary-background-color` |
-| `--md-chip-background-color-checked` | Chip checked background color | `--paper-cyan-500` |
-| `--md-chip-color-checked` | Chip checked foreground color | `white` |
+| `--md-chip-background-color` | Background color | `--paper-grey-300` |
+| `--md-chip-color` | Foreground color | `--paper-grey-600` |
+| `--md-chip-remove-color` | Remove button foreground color | `--paper-grey-500` |
+| `--md-chip-background-color-hover` | Hover background color | `--paper-grey-600` |
+| `--md-chip-color-hover` | Hover foreground color | `--paper-grey-300` |
+| `--md-chip-remove-color-hover` | Remove button hover foreground color | `--paper-grey-300` |
