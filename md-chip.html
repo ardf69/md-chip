@@ -20,25 +20,20 @@
                 display: inline-block;
                 @apply(--layout-horizontal);
                 @apply(--layout-center);
-                background-color: var(--md-chip-background-color, --divider-color);
+                background-color: var(--md-chip-background-color, --paper-grey-300);
                 border-radius: 16px;
                 box-sizing: border-box;
-                color: var(--md-chip-color, --secondary-text-color);
+                color: var(--md-chip-color, --paper-grey-600);
                 height: 32px;
                 white-space: nowrap;
                 width: auto;
             }
             #container:hover {
-                background-color: var(--md-chip-background-color-hover, --secondary-text-color);
-                color: var(--md-chip-color-hover, --primary-background-color);
+                background-color: var(--md-chip-color, --paper-grey-600);
+                color: var(--md-chip-background-color, --paper-grey-300);
             }
-            #container[checked] {
-                background-color: var(--md-chip-background-color-checked, --paper-cyan-500);
-                color: var(--md-chip-color-checked, white);
-            }
-            #container[checked]:hover {
-                background-color: var(--md-chip-background-color-hover, --secondary-text-color);
-                color: var(--md-chip-color-hover, --primary-background-color);
+            #container:hover > #remove {
+                color: var(--md-chip-background-color, --paper-grey-300);
             }
             #empty {
                 display: inline-block;
@@ -48,8 +43,9 @@
                 font: var(--paper-font-menu);
             }
             #remove {
-                padding-left: 4px;
-                padding-right: 4px;
+                --iron-icon-height: 20px;
+                --iron-icon-width: 20px;
+                color: var(--md-chip-remove-color, --paper-grey-500);
             }
         </style>
 
@@ -59,7 +55,9 @@
                 <div id="label">[[label]]</div>
             </template>
             <template is="dom-if" if="[[removable]]">
+                <div style="width:6px; height:0px"></div>
                 <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+                <div style="width:6px; height:0px"></div>
             </template>
             <template is="dom-if" if="[[!removable]]">
                 <div id="empty">&nbsp;</div>
@@ -76,21 +74,23 @@
                 is: 'md-chip',
 
                 properties: {
-                    checkable: {
-                        observer: '_checkableChanged',
-                        type: Boolean,
-                        value: false
-                    },
-                    checked: {
-                        notify: true,
-                        observer: '_checkableChanged',
-                        type: Boolean,
-                        value: false
-                    },
+                    /**
+                     * Fired when the user click on the remove button.
+                     *
+                     * @event remove
+                     */
+
+                    /**
+                     * The text to display in the chip
+                     */
                     label: {
                         type: String,
                         value: null
                     },
+
+                    /**
+                     * Set to true to display the remove button in the chip
+                     */
                     removable: {
                         type: Boolean,
                         value: false
@@ -106,19 +106,6 @@
                 ready: function() {
                 },
 
-                _checkableChanged: function() {
-                    if (this.checkable && this.checked) {
-                        this.$.container.setAttribute('checked','checked');
-                    } else {
-                        this.$.container.removeAttribute('checked');
-                    }
-                },
-                _onConatinerTap: function() {
-                    if (this.checkable) {
-                        this.checked = !this.checked;
-                    }
-                    this._checkableChanged();
-                },
                 _remove: function() {
                     this.fire('remove', { value: this.label });
                 },
