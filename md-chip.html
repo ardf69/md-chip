@@ -75,20 +75,22 @@
             }
         </style>
 
-        <div id="container" on-tap="_onConatinerTap">
-            <div id="empty">&nbsp;</div>
-            <template is="dom-if" if="[[label]]">
-                <div id="label">[[label]]</div>
-            </template>
-            <template is="dom-if" if="[[removable]]">
-                <div style="width:6px; height:0px"></div>
-                <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
-                <div style="width:6px; height:0px"></div>
-            </template>
-            <template is="dom-if" if="[[!removable]]">
+        <template is="dom-if" if="!removed">
+            <div id="container" on-tap="_onConatinerTap">
                 <div id="empty">&nbsp;</div>
-            </template>
-        </div>
+                <template is="dom-if" if="[[label]]">
+                    <div id="label">[[label]]</div>
+                </template>
+                <template is="dom-if" if="[[removable]]">
+                    <div style="width:6px; height:0px"></div>
+                    <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+                    <div style="width:6px; height:0px"></div>
+                </template>
+                <template is="dom-if" if="[[!removable]]">
+                    <div id="empty">&nbsp;</div>
+                </template>
+            </div>
+        </template>
     </template>
 
     <script>
@@ -117,7 +119,8 @@
                     /**
                      * Set to true to display the remove button in the chip
                      */
-                    removable: {
+                    removed: {
+                        notify: true;
                         type: Boolean,
                         value: false
                     }
@@ -133,7 +136,7 @@
                 },
 
                 _remove: function() {
-                    this.fire('remove', { value: this.label });
+                    this.removed = true;
                 },
             });
         })();
