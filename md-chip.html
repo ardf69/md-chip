@@ -75,22 +75,20 @@
             }
         </style>
 
-        <template is="dom-if" if="!removed">
-            <div id="container" on-tap="_onConatinerTap">
+        <div id="container">
+            <div id="empty">&nbsp;</div>
+            <template is="dom-if" if="[[label]]">
+                <div id="label">[[label]]</div>
+            </template>
+            <template is="dom-if" if="[[removable]]">
+                <div style="width:6px; height:0px"></div>
+                <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+                <div style="width:6px; height:0px"></div>
+            </template>
+            <template is="dom-if" if="[[!removable]]">
                 <div id="empty">&nbsp;</div>
-                <template is="dom-if" if="[[label]]">
-                    <div id="label">[[label]]</div>
-                </template>
-                <template is="dom-if" if="[[removable]]">
-                    <div style="width:6px; height:0px"></div>
-                    <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
-                    <div style="width:6px; height:0px"></div>
-                </template>
-                <template is="dom-if" if="[[!removable]]">
-                    <div id="empty">&nbsp;</div>
-                </template>
-            </div>
-        </template>
+            </template>
+        </div>
     </template>
 
     <script>
@@ -103,12 +101,6 @@
 
                 properties: {
                     /**
-                     * Fired when the user click on the remove button.
-                     *
-                     * @event remove
-                     */
-
-                    /**
                      * The text to display in the chip
                      */
                     label: {
@@ -119,8 +111,17 @@
                     /**
                      * Set to true to display the remove button in the chip
                      */
+                    removable: {
+                        type: Boolean,
+                        value: false
+                    },
+
+                     /**
+                      * Set to true/false to hide/show the chip
+                      */
                     removed: {
-                        notify: true;
+                        notify: true,
+                        observer: '_removedChanged',
                         type: Boolean,
                         value: false
                     }
@@ -138,6 +139,15 @@
                 _remove: function() {
                     this.removed = true;
                 },
+                _removedChanged: function() {
+                    if (this.removable) {
+                        if (this.removed) {
+                            this.style.display = 'none';
+                        } else {
+                            this.style.display = 'inline-block';
+                        }
+                    }
+                }
             });
         })();
     </script>
