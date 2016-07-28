@@ -1,0 +1,71 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<!--
+    ## &lt;md-contact-chip-item&gt;
+
+    Material design: [Chips](https://material.google.com/components/chips.htm)
+
+    `<md-contact-chip-item>` contains informations about the contact. Example
+
+    ```html
+    <md-contact-chip label="User" removable selected="0">
+        <md-contact-chip-item address="pippo@pippo.com" image="http://pippo.com/face.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="pippo1@pippo.com" image="http://pippo.com/face1.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="+1234567890" image="http://pippo.com/face2.jpg"></md-contact-chip-item>
+    </md-contact-chip>
+    ```
+
+    @element md-contact-chip-item
+    @blurb A chip material design implementation.
+    @homepage http://ardf69.github.io/md-chip/
+    @demo demo/index.html
+-->
+<dom-module id="md-contact-chip-item">
+    <template></template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+
+                is: 'md-contact-chip-item',
+
+                properties: {
+                    /**
+                     * The address of the contact
+                     */
+                    address: {
+                        notify: true,
+                        type: String,
+                        value: null
+                    },
+
+                    /**
+                     * The image of the contact
+                     */
+                    image: {
+                        notify: true,
+                        type: String,
+                        value: null
+                    }
+
+                },
+
+                attached: function() {
+                },
+                attributeChanged: function(name, type) {
+                },
+                detached: function() {
+                },
+                ready: function() {
+                }
+
+            });
+        })();
+    </script>
+</dom-module>
