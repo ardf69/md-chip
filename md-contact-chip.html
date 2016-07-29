@@ -8,7 +8,6 @@
 <link rel="import" href="../paper-styles/typography.html">
 
 <link rel="import" href="./md-contact-chip-item.html">
-<link rel="import" href="./md-contact-chip-list-item.html">
 
 <!--
     ## &lt;md-contact-chip&gt;
@@ -32,46 +31,18 @@
 
     | Custom property | Description | Default |
     | --- | --- | --- |
-    | `--md-chip-background-color` | Background color | `--paper-grey-300` |
-    | `--md-chip-color` | Foreground color | `--paper-grey-600` |
-    | `--md-chip-image-color` | The circle background color of the image | `#009587` |
-    | `--md-chip-letter-color` | The color of the letter for the image | `white` |
-    | `--md-chip-focused-background-color` | Background focused color | `--paper-grey-300` |
-    | `--md-chip-focused-color` | Foreground focused color | `--paper-grey-600` |
-    | `--md-chip-focused-image-color` | The circle background focused color of the image | `#009587` |
-    | `--md-chip-focused-letter-color` | The focused color of the letter for the image | `white` |
-    | `--md-chip-pressed-background-color` | Background pressed color | `#d6d6d6` |
-    | `--md-chip-pressed-color` | Foreground pressed color | `--paper-grey-600` |
-    | `--md-chip-pressed-image-color` | The circle background pressed color of the image | `#009587` |
-    | `--md-chip-pressed-letter-color` | The pressed color of the letter for the image | `white` |
-    | `--md-contact-background-color` | Background color of the popup list | `white` |
-    | `--md-contact-name-color` | Color of the item name string |`--paper-grey-900` |
-    | `--md-contact-address-color` | Color of the item address string | `--paper-grey-600` |
-    | `--md-contact-image-color` | Background color of the item image | `#009587` |
-    | `--md-contact-letter-color` | The color of the letter for the item image | `white` |
-    | `--md-contact-remove-background-color` | The background color of the remove icon | `#fafafa` |
-    | `--md-contact-remove-color` | The foreground color of the remove icon | `#bbbbbb` |
-    | `--md-contact-focused-background-color` | Background color of the focused popup list | `#e8e8e8` |
-    | `--md-contact-focused-name-color` | Color of the focused item name string | `--paper-grey-900` |
-    | `--md-contact-focused-address-color` | Color of the focused item address string | `--paper-grey-600` |
-    | `--md-contact-focused-image-color` | Background color of the focused item image | `#009587` |
-    | `--md-contact-focused-letter-color` | The color of the letter for the focused item image | `white` |
-    | `--md-contact-focused-remove-background-color` | The background color of the focused remove icon | `#fafafa` |
-    | `--md-contact-focused-remove-color` | The foreground color of the focused remove icon | `#bbbbbb` |
-    | `--md-contact-pressed-background-color` | Background color of the pressed popup list | `#d6d6d6` |
-    | `--md-contact-pressed-name-color` | Color of the pressed item name string | `--paper-grey-900` |
-    | `--md-contact-pressed-address-color` | Color of the pressed item address string | `--paper-grey-600` |
-    | `--md-contact-pressed-image-color` | Background color of the pressed item image | `#009587` |
-    | `--md-contact-pressed-letter-color` | The color of the letter for the pressed item image | `white` |
-    | `--md-contact-pressed-remove-background-color` | The background color of the pressed remove icon | `#fafafa` |
-    | `--md-contact-pressed-remove-color` | The foreground color of the pressed remove icon | `#bbbbbb` |
-    | `--md-contact-selected-background-color` | Background color of the selected popup list | `--paper-cyan-a700` |
-    | `--md-contact-selected-name-color` | Color of the selected item name string | `white` |
-    | `--md-contact-selected-address-color` | Color of the selected item address string | `#b2eaf2` |
-    | `--md-contact-selected-image-color` | Background color of the selected item image | `#009587` |
-    | `--md-contact-selected-letter-color` | The color of the letter for the selected item image | `white` |
-    | `--md-contact-selected-remove-background-color` | The background color of the selected remove icon | `--paper-cyan-a700` |
-    | `--md-contact-selected-remove-color` | The foreground color of the selected remove icon | `#ffffff` |
+    | `--md-contact-chip-background-color` | Background color | `--paper-grey-300` |
+    | `--md-contact-chip-color` | Foreground color | `--paper-grey-600` |
+    | `--md-contact-chip-image-color` | The circle background color of the image | `#009587` |
+    | `--md-contact-chip-letter-color` | The color of the letter for the image | `white` |
+    | `--md-contact-chip-focused-background-color` | Background focused color | `--paper-grey-300` |
+    | `--md-contact-chip-focused-color` | Foreground focused color | `--paper-grey-600` |
+    | `--md-contact-chip-focused-image-color` | The circle background focused color of the image | `#009587` |
+    | `--md-contact-chip-focused-letter-color` | The focused color of the letter for the image | `white` |
+    | `--md-contact-chip-pressed-background-color` | Background pressed color | `#d6d6d6` |
+    | `--md-contact-chip-pressed-color` | Foreground pressed color | `--paper-grey-600` |
+    | `--md-contact-chip-pressed-image-color` | The circle background pressed color of the image | `#009587` |
+    | `--md-contact-chip-pressed-letter-color` | The pressed color of the letter for the image | `white` |
 
     @element md-contact-chip
     @blurb A chip material design implementation.
@@ -88,29 +59,29 @@
                 display: inline-block;
                 outline: none;
 
-                --background-color: var(--md-chip-background-color, --paper-grey-300);
-                --color: var(--md-chip-color, --paper-grey-600);
+                --background-color: var(--md-contact-chip-background-color, --paper-grey-300);
+                --color: var(--md-contact-chip-color, --paper-grey-600);
 
-                --image-color: var(--md-chip-image-color, #009587);
-                --letter-color: var(--md-chip-letter-color, white);
+                --image-color: var(--md-contact-chip-image-color, #009587);
+                --letter-color: var(--md-contact-chip-letter-color, white);
             }
             :host([focused]):not([pressed]) {
                 @apply(--shadow-elevation-2dp);
 
-                --background-color: var(--md-chip-focused-background-color, --paper-grey-300);
-                --color: var(--md-chip-focused-color, --paper-grey-600);
+                --background-color: var(--md-contact-chip-focused-background-color, --paper-grey-300);
+                --color: var(--md-contact-chip-focused-color, --paper-grey-600);
 
-                --image-color: var(--md-chip-focused-image-color, #009587);
-                --letter-color: var(--md-chip-focused-letter-color, white);
+                --image-color: var(--md-contact-chip-focused-image-color, #009587);
+                --letter-color: var(--md-contact-chip-focused-letter-color, white);
             }
             :host([pressed]) {
                 @apply(--shadow-elevation-2dp);
 
-                --background-color: var(--md-chip-background-pressed-color, #d6d6d6);
-                --color: var(--md-chip-pressed-color, --paper-grey-600);
+                --background-color: var(--md-contact-chip-background-pressed-color, #d6d6d6);
+                --color: var(--md-contact-chip-pressed-color, --paper-grey-600);
 
-                --image-color: var(--md-chip-pressed-image-color, #009587);
-                --letter-color: var(--md-chip-pressed-letter-color, white);
+                --image-color: var(--md-contact-chip-pressed-image-color, #009587);
+                --letter-color: var(--md-contact-chip-pressed-letter-color, white);
             }
 
             --paper-font-name: {
@@ -182,28 +153,28 @@
             <paper-material class="dropdown-content" elevation="4">
                 <div id="list">
                     <template is="dom-repeat" items="[[_items]]">
-                        <md-contact-chip-list-item
+                        <md-contact-chip-item
+                            _index="[[index]]"
+                            _name="[[name]]"
+                            _removed="{{removed}}"
                             address="[[item.address]]"
                             class$="[[_getClass(selected, _selected, _itemPressed, index)]]"
                             image="[[item.image]]"
-                            index="[[index]]"
-                            name="[[name]]"
                             on-down="_onItemDown"
                             on-tap="_onItemTap"
-                            on-up="_onItemUp"
-                            removed="{{removed}}">
-                        </md-contact-chip-list-item>
+                            on-up="_onItemUp">
+                        </md-contact-chip-item>
                     </template>
-                    <template is="dom-if" items="[[!_items.length]]">
-                        <md-contact-chip-list-item
+                    <template is="dom-if" if="[[!_items.length]]">
+                        <md-contact-chip-item
+                            _index="[[_firstIndex()]]"
+                            _name="[[name]]"
+                            _removed="{{removed}}"
                             address=""
-                            class$="selected"
+                            class="selected"
                             image="[[image]]"
-                            index="0"
-                            name="[[name]]"
-                            on-tap="_onItemTap"
-                            removed="{{removed}}">
-                        </md-contact-chip-list-item>
+                            on-tap="_onItemTap">
+                        </md-contact-chip-item>
                     </template>
                 </div>
             </paper-material>
@@ -228,9 +199,9 @@
                         type: String,
                         value: null,
                     },
-                    _items: {
-                        type: Array,
-                        value: []
+                    _itemsCount: {
+                        type: Number,
+                        value: 0
                     },
                     _itemPressed: {
                         type: Number,
@@ -319,11 +290,11 @@
                 },
 
                 _blur: function() {
-                    console.log('Focus lost');
 					this._setFocused(false);
 				},
                 _childNodesChanged: function(info) {
                     var self = this;
+                    var name = this.name;
 
                     info.removedNodes.forEach(function(node) {
                         if (node.localName == 'md-contact-chip-item') {
@@ -339,8 +310,10 @@
                     });
                     this._update();
                 },
+                _firstIndex: function() {
+                    return 0;
+                },
                 _focus: function() {
-                    console.log('Focus get');
 					this._setFocused(true);
 				},
                 _getClass: function(selected, _selected, _itemPressed, index) {
@@ -366,7 +339,6 @@
                     return result;
                 },
                 _onDown: function() {
-                    console.log('Down');
                     this._setPressed(true);
                 },
                 _onItemDown: function(event) {
@@ -380,7 +352,7 @@
                     ) {
                         this.selected = event.model.index;
                     }
-                    this.$$('#dropdown').opened = false;
+                    this.$.dropdown.opened = false;
                 },
                 _onItemUp: function(event) {
                     this._itemPressed = -1;
@@ -388,12 +360,12 @@
                 _onKeyup: function(event) {
                     var keyCode = event.keyCode;
 
-                    if (this.$$('#dropdown').opened) {
+                    if (this.$.dropdown.opened) {
                         if (keyCode === 10 || keyCode === 13) {
                             // CR o LF
                             if (-1 < this._selected && this._selected < this._items.length) {
                                 this.selected = this._selected;
-                                this.$$('#dropdown').opened = false;
+                                this.$.dropdown.opened = false;
                             }
                         } else if (keyCode === 38) {
                             // UP
@@ -407,25 +379,13 @@
                             }
                         } else if (keyCode === 27) {
                             // ESC
-                            this.$$('#dropdown').opened = false;
+                            this.$.dropdown.opened = false;
                         }
                     }
                 },
                 _onTap: function() {
-                    if (this.selected < -1) {
-                        this.selected = 0;
-                    } else if (this.selected >= this._items.length) {
-                        this.selected = this._items.length - 1;
-                    }
                     this._selected = -1;
-
-                    if (this._items.length > 0) {
-
-                    } else {
-
-                    }
-
-                    this.$$('#dropdown').opened = true;
+                    this.$.dropdown.opened = true;
                 },
                 _onUp: function() {
                     this._setPressed(false);
