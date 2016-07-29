@@ -1,3 +1,6 @@
+Homepage: http://ardf69.github.io/md-chip/
+Demo: http://ardf69.github.io/md-chip/demo/
+
 ## &lt;md-chip&gt;
 
 Material design: [Chips](https://material.google.com/components/chips.htm)
@@ -22,11 +25,6 @@ The following custom properties are available for styling:
 | `--md-chip-background-color-hover` | Hover background color | `--paper-grey-600` |
 | `--md-chip-color-hover` | Hover foreground color | `--paper-grey-300` |
 | `--md-chip-remove-color-hover` | Remove button hover foreground color | `--paper-grey-300` |
-
-@element md-chip
-@blurb A chip material design implementation.
-@homepage http://ardf69.github.io/md-chip/
-@demo demo/index.html
 
 ## &lt;md-contact-chip&gt;
 
@@ -61,11 +59,6 @@ The following custom properties are available for styling:
 | `--md-contact-chip-pressed-color` | Foreground pressed color | `--paper-grey-600` |
 | `--md-contact-chip-pressed-image-color` | The circle background pressed color of the image | `#009587` |
 | `--md-contact-chip-pressed-letter-color` | The pressed color of the letter for the image | `white` |
-
-@element md-contact-chip
-@blurb A chip material design implementation.
-@homepage http://ardf69.github.io/md-chip/
-@demo demo/index.html
 
 ## &lt;md-contact-chip-item&gt;
 
@@ -114,8 +107,3 @@ The following custom properties are available for styling:
 | `--md-contact-chip-item-selected-letter-color` | The color of the letter for the selected item image | `white` |
 | `--md-contact-chip-item-selected-remove-background-color` | The background color of the selected remove icon | `--paper-cyan-a700` |
 | `--md-contact-chip-item-selected-remove-color` | The foreground color of the selected remove icon | `#ffffff` |
-
-@element md-contact-chip-item
-@blurb A chip material design implementation.
-@homepage http://ardf69.github.io/md-chip/
-@demo demo/index.html
