@@ -1,4 +1,5 @@
 Homepage: http://ardf69.github.io/md-chip/
+
 Demo: http://ardf69.github.io/md-chip/demo/
 
 ## &lt;md-chip&gt;
