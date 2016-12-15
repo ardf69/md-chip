@@ -127,7 +127,7 @@
                       */
                     removed: {
                         notify: true,
-                        observer: '_removedChanged',
+                        // observer: '_removedChanged',
                         type: Boolean,
                         value: false
                     }
@@ -145,15 +145,15 @@
                 _remove: function() {
                     this.removed = true;
                 },
-                _removedChanged: function() {
-                    if (this.removable) {
-                        if (this.removed) {
-                            this.style.display = 'none';
-                        } else {
-                            this.style.display = 'inline-block';
-                        }
-                    }
-                }
+                // _removedChanged: function() {
+                //     if (this.removable) {
+                //         if (this.removed) {
+                //             this.style.display = 'none';
+                //         } else {
+                //             this.style.display = 'inline-block';
+                //         }
+                //     }
+                // }
             });
         })();
     </script>
