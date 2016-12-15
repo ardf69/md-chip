@@ -126,7 +126,7 @@
                       * Set to true/false to hide/show the chip
                       */
                     removed: {
-                        notify: true,
+                        // notify: true,
                         // observer: '_removedChanged',
                         type: Boolean,
                         value: false
@@ -143,6 +143,7 @@
                 },
 
                 _remove: function() {
+					this.fire('removed-changed', { value: true });
                     this.removed = true;
                 },
                 // _removedChanged: function() {
