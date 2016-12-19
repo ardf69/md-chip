@@ -40,12 +40,14 @@
 <dom-module id="md-chip">
     <template>
         <style>
-            :host {
-                display: inline-block;
-            }
+			:host {
+				display: inline-block;
+			}
+			:host[removed] {
+				display: none;
+			}
 
             #container {
-                display: inline-block;
                 @apply(--layout-horizontal);
                 @apply(--layout-center);
                 background-color: var(--md-chip-background-color, --paper-grey-300);
@@ -64,7 +66,6 @@
                 color: var(--md-chip-remove-color-hover, --paper-grey-300);
             }
             #empty {
-                display: inline-block;
                 width: 12px;
             }
             #label {
@@ -126,8 +127,9 @@
                       * Set to true/false to hide/show the chip
                       */
                     removed: {
-                        // notify: true,
-                        // observer: '_removedChanged',
+                        notify: true,
+                        observer: '_removedChanged',
+						reflectToAttribute: true,
                         type: Boolean,
                         value: false
                     }
@@ -143,18 +145,8 @@
                 },
 
                 _remove: function() {
-					this.fire('removed-changed', { value: true });
                     this.removed = true;
-                },
-                // _removedChanged: function() {
-                //     if (this.removable) {
-                //         if (this.removed) {
-                //             this.style.display = 'none';
-                //         } else {
-                //             this.style.display = 'inline-block';
-                //         }
-                //     }
-                // }
+                }
             });
         })();
     </script>
