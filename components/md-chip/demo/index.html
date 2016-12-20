@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <title>md-chip demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../../paper-styles/color.html">
+
+        <link rel="import" href="../all-imports.html">
+
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+    </head>
+    <body>
+
+        <div class="vertical-section-container centered">
+            <h3>Basic md-chip</h3>
+            <demo-snippet class="centered-demo">
+                <template>
+                    <md-chip label="text"></md-chip>
+                </template>
+            </demo-snippet>
+
+            <h3>Removable md-chip</h3>
+            <demo-snippet class="centered-demo">
+                <template>
+                    <md-chip label="text" removable></md-chip>
+                </template>
+            </demo-snippet>
+
+            <h3>Styled md-chip</h3>
+            <demo-snippet class="centered-demo">
+                <template>
+                    <style is="custom-style">
+                        .styled {
+                            --md-chip-background-color: var(--paper-cyan-600);
+                            --md-chip-color: var(--paper-cyan-50);
+                            --md-chip-remove-color: var(--paper-cyan-100);
+                            --md-chip-background-color-hover: var(--paper-red-600);
+                            --md-chip-color-hover: var(--paper-red-50);
+                            --md-chip-remove-color-hover: var(--paper-red-100);
+                        }
+                    </style>
+                    <md-chip class="styled" label="text" removable></md-chip>
+                </template>
+            </demo-snippet>
+
+            <h3>Basic md-contact-chip</h3>
+            <demo-snippet class="centered-demo">
+                <template>
+                    <md-contact-chip name="name" tabindex="0">
+                    </md-contact-chip>
+                </template>
+            </demo-snippet>
+
+            <h3>Extended md-contact-chip</h3>
+            <demo-snippet class="centered-demo">
+                <template>
+                    <md-contact-chip name="name" tabindex="0">
+                        <md-contact-chip-item address="pippo1@pippo.com"></md-contact-chip-item>
+                        <md-contact-chip-item image="./leo.png" address="pippo@pippo.com"></md-contact-chip-item>
+                    </md-contact-chip>
+                </template>
+            </demo-snippet>
+        </div>
+
+    </body>
+</html>

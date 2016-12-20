@@ -1,0 +1,314 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<!--
+    ## &lt;md-contact-chip-item&gt;
+
+    Material design: [Chips](https://material.google.com/components/chips.htm)
+
+    `<md-contact-chip-item>` contains informations about the contact. Example
+
+    ```html
+    <md-contact-chip label="User" removable selected="0">
+        <md-contact-chip-item address="pippo@pippo.com" image="http://pippo.com/face.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="pippo1@pippo.com" image="http://pippo.com/face1.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="+1234567890" image="http://pippo.com/face2.jpg"></md-contact-chip-item>
+    </md-contact-chip>
+    ```
+    ### Styling
+
+    The following custom properties are available for styling:
+
+    | Custom property | Description | Default |
+    | --- | --- | --- |
+    | `--md-contact-chip-item-background-color` | Background color of the popup list | `white` |
+    | `--md-contact-chip-item-name-color` | Color of the item name string |`--paper-grey-900` |
+    | `--md-contact-chip-item-address-color` | Color of the item address string | `--paper-grey-600` |
+    | `--md-contact-chip-item-image-color` | Background color of the item image | `#009587` |
+    | `--md-contact-chip-item-letter-color` | The color of the letter for the item image | `white` |
+    | `--md-contact-chip-item-remove-background-color` | The background color of the remove icon | `#fafafa` |
+    | `--md-contact-chip-item-remove-color` | The foreground color of the remove icon | `#bbbbbb` |
+    | `--md-contact-chip-item-focused-background-color` | Background color of the focused popup list | `#e8e8e8` |
+    | `--md-contact-chip-item-focused-name-color` | Color of the focused item name string | `--paper-grey-900` |
+    | `--md-contact-chip-item-focused-address-color` | Color of the focused item address string | `--paper-grey-600` |
+    | `--md-contact-chip-item-focused-image-color` | Background color of the focused item image | `#009587` |
+    | `--md-contact-chip-item-focused-letter-color` | The color of the letter for the focused item image | `white` |
+    | `--md-contact-chip-item-focused-remove-background-color` | The background color of the focused remove icon | `#fafafa` |
+    | `--md-contact-chip-item-focused-remove-color` | The foreground color of the focused remove icon | `#bbbbbb` |
+    | `--md-contact-chip-item-pressed-background-color` | Background color of the pressed popup list | `#d6d6d6` |
+    | `--md-contact-chip-item-pressed-name-color` | Color of the pressed item name string | `--paper-grey-900` |
+    | `--md-contact-chip-item-pressed-address-color` | Color of the pressed item address string | `--paper-grey-600` |
+    | `--md-contact-chip-item-pressed-image-color` | Background color of the pressed item image | `#009587` |
+    | `--md-contact-chip-item-pressed-letter-color` | The color of the letter for the pressed item image | `white` |
+    | `--md-contact-chip-item-pressed-remove-background-color` | The background color of the pressed remove icon | `#fafafa` |
+    | `--md-contact-chip-item-pressed-remove-color` | The foreground color of the pressed remove icon | `#bbbbbb` |
+    | `--md-contact-chip-item-selected-background-color` | Background color of the selected popup list | `--paper-cyan-a700` |
+    | `--md-contact-chip-item-selected-name-color` | Color of the selected item name string | `white` |
+    | `--md-contact-chip-item-selected-address-color` | Color of the selected item address string | `#b2eaf2` |
+    | `--md-contact-chip-item-selected-image-color` | Background color of the selected item image | `#009587` |
+    | `--md-contact-chip-item-selected-letter-color` | The color of the letter for the selected item image | `white` |
+    | `--md-contact-chip-item-selected-remove-background-color` | The background color of the selected remove icon | `--paper-cyan-a700` |
+    | `--md-contact-chip-item-selected-remove-color` | The foreground color of the selected remove icon | `#ffffff` |
+
+    @element md-contact-chip-item
+    @blurb A chip material design implementation.
+    @homepage http://ardf69.github.io/md-chip/
+    @demo demo/index.html
+-->
+<dom-module id="md-contact-chip-item">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                background-color: var(--md-contact-chip-item-background-color, white);
+
+                --name-color: var(--md-contact-chip-item-name-color, --paper-grey-900);
+                --address-color: var(--md-contact-chip-item-address-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-item-image-color, #009587);
+                --letter-color: var(--md-contact-chip-item-letter-color, white);
+
+                --remove-background-color: var(--md-contact-chip-item-remove-background-color, #fafafa);
+                --remove-color: var(--md-contact-chip-item-remove-color, #bbbbbb);
+            }
+            :host(.focused) {
+                background-color: var(--md-contact-chip-item-focused-background-color, #e8e8e8);
+
+                --name-color: var(--md-contact-chip-item-focused-name-color, --paper-grey-900);
+                --address-color: var(--md-contact-chip-item-focused-address-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-item-focused-image-color, #009587);
+                --letter-color: var(--md-contact-chip-item-focused-letter-color, white);
+
+                --remove-background-color: var(--md-contact-chip-item-focused-remove-background-color, #fafafa);
+                --remove-color: var(--md-contact-chip-item-focused-remove-color, #bbbbbb);
+            }
+            :host(.pressed) {
+                background-color: var(--md-contact-chip-item-pressed-background-color, #d6d6d6);
+
+                --name-color: var(--md-contact-chip-item-pressed-name-color, --paper-grey-900);
+                --address-color: var(--md-contact-chip-item-pressed-address-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-item-pressed-image-color, #009587);
+                --letter-color: var(--md-contact-chip-item-pressed-letter-color, white);
+
+                --remove-background-color: var(--md-contact-chip-item-pressed-remove-background-color, #fafafa);
+                --remove-color: var(--md-contact-chip-item-pressed-remove-color, #bbbbbb);
+            }
+            :host(.selected) {
+                background-color: var(--md-contact-chip-item-selected-background-color, --paper-cyan-a700);
+
+                --name-color: var(--md-contact-chip-item-selected-name-color, white);
+                --address-color: var(--md-contact-chip-item-selected-address-color, #b2eaf2);
+
+                --image-color: var(--md-contact-chip-item-selected-image-color, #009587);
+                --letter-color: var(--md-contact-chip-item-selected-letter-color, white);
+
+                --remove-background-color: var(--md-contact-chip-item-selected-remove-background-color, --paper-cyan-a700);
+                --remove-color: var(--md-contact-chip-item-selected-remove-color, #ffffff);
+            }
+
+            --paper-font-address: {
+                @apply(--paper-font-common-base);
+                @apply(--paper-font-common-nowrap);
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+            };
+            --paper-font-name: {
+                @apply(--paper-font-common-base);
+                @apply(--paper-font-common-nowrap);
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 16px;
+            };
+
+            #address {
+                @apply(--layout-horizontal);
+                @apply(--paper-font-address);
+                color: var(--address-color);
+                height: 16px;
+            }
+            #address-name {
+                @apply(--layout-horizontal);
+                @apply(--paper-font-address);
+                color: var(--name-color);
+                height: 16px;
+            }
+            #content {
+                @apply(--layout-vertical);
+            }
+            #empty12 {
+                width: 12px;
+                height: 0px
+            }
+            #empty20 {
+                width: 20px;
+                height: 0px
+            }
+            #first-item {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                height: 72px;
+            }
+            #name {
+                @apply(--layout-horizontal);
+                @apply(--paper-font-name);
+                color: var(--name-color);
+                height: 16px;
+            }
+            #next-item {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                height: 56px;
+            }
+            #prefix {
+                @apply(--layout-horizontal);
+                @apply(--layout-center-justified);
+                @apply(--layout-center);
+                background-color: var(--image-color);
+                border-radius: 20px;
+                box-sizing: border-box;
+                color: var(--letter-color);
+                height: 40px;
+                width: 40px;
+            }
+            #remove-icon {
+                --iron-icon-height: 28px;
+                --iron-icon-width: 28px;
+                left: -2px;
+                top: -2px;
+            }
+            #suffix {
+                background-color: var(--remove-background-color);
+                border-radius: 12px;
+                box-sizing: border-box;
+                color: var(--remove-color);
+                height: 24px;
+                width: 24px;
+            }
+            #vempty16 {
+                width: 0px;
+                height: 8px
+            }
+            #vempty8 {
+                width: 0px;
+                height: 8px
+            }
+        </style>
+
+        <template is="dom-if" if="[[!_index]]">
+            <div id="first-item">
+                <div id="empty12"></div>
+                <div id="prefix">
+                    <template is="dom-if" if="[[image]]">
+                        <iron-icon id="image40" src="[[image]]"></iron-icon>
+                    </template>
+                    <template is="dom-if" if="[[!image]]">[[_getLetter(_name)]]</template>
+                </div>
+                <div id="empty12"></div>
+                <div id="content">
+                    <div id="vempty16"></div>
+                    <div id="name">[[_name]]</div>
+                    <div id="vempty8"></div>
+                    <div id="address">[[address]]</div>
+                    <div id="vempty16"></div>
+                </div>
+                <div id="empty20"></div>
+                <div id="suffix">
+                    <iron-icon id="remove-icon" icon="cancel" on-tap="_remove"></iron-icon>
+                </div>
+                <div id="empty12"></div>
+            </div>
+        </template>
+        <template is="dom-if" if="[[_index]]">
+            <div id="next-item">
+                <div id="empty12"></div>
+                <div id="prefix">
+                    <template is="dom-if" if="[[image]]">
+                        <iron-icon id="image40" src="[[image]]"></iron-icon>
+                    </template>
+                    <template is="dom-if" if="[[!image]]">[[_getLetter(_name)]]</template>
+                </div>
+                <div id="empty12"></div>
+                <div id="address-name">[[address]]</div>
+            </div>
+        </template>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+
+                is: 'md-contact-chip-item',
+
+                properties: {
+                    _index: {
+                        type: Number,
+                        value: -1
+                    },
+                    _name: {
+                        type: String,
+                        value: null
+                    },
+                    _removed: {
+                        notify: true,
+                        type: Boolean,
+                        value: false
+                    },
+
+                    /**
+                     * The address of the contact
+                     */
+                    address: {
+                        notify: true,
+                        type: String,
+                        value: null
+                    },
+
+                    /**
+                     * The image of the contact
+                     */
+                    image: {
+                        notify: true,
+                        type: String,
+                        value: null
+                    }
+
+                },
+
+                attached: function() {
+                },
+                attributeChanged: function(name, type) {
+                },
+                detached: function() {
+                },
+                ready: function() {
+                },
+
+                _getLetter: function(name) {
+                    var result = '';
+
+                    if (
+                        name !== undefined &&
+                        name !== null &&
+                        name.length > 0
+                    ) {
+                        result = name.toUpperCase().charAt(0);
+                    }
+
+                    return result;
+                },
+                _remove: function() {
+                    this._removed = !this._removed;
+                },
+            });
+        })();
+    </script>
+</dom-module>

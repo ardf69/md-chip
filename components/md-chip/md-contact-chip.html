@@ -1,0 +1,428 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<link rel="import" href="./md-contact-chip-item.html">
+
+<!--
+    ## &lt;md-contact-chip&gt;
+
+    Material design: [Chips](https://material.google.com/components/chips.htm)
+
+    `<md-contact-chip>` implements the material design contact chip. The following is the example
+    of the `<md-contact-chip>` usage
+
+    ```html
+    <md-contact-chip label="User" removable selected="0">
+        <md-contact-chip-item address="pippo@pippo.com" image="http://pippo.com/face.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="pippo1@pippo.com" image="http://pippo.com/face1.jpg"></md-contact-chip-item>
+        <md-contact-chip-item address="+1234567890" image="http://pippo.com/face2.jpg"></md-contact-chip-item>
+    </md-contact-chip>
+    ```
+
+    ### Styling
+
+    The following custom properties are available for styling:
+
+    | Custom property | Description | Default |
+    | --- | --- | --- |
+    | `--md-contact-chip-background-color` | Background color | `--paper-grey-300` |
+    | `--md-contact-chip-color` | Foreground color | `--paper-grey-600` |
+    | `--md-contact-chip-image-color` | The circle background color of the image | `#009587` |
+    | `--md-contact-chip-letter-color` | The color of the letter for the image | `white` |
+    | `--md-contact-chip-focused-background-color` | Background focused color | `--paper-grey-300` |
+    | `--md-contact-chip-focused-color` | Foreground focused color | `--paper-grey-600` |
+    | `--md-contact-chip-focused-image-color` | The circle background focused color of the image | `#009587` |
+    | `--md-contact-chip-focused-letter-color` | The focused color of the letter for the image | `white` |
+    | `--md-contact-chip-pressed-background-color` | Background pressed color | `#d6d6d6` |
+    | `--md-contact-chip-pressed-color` | Foreground pressed color | `--paper-grey-600` |
+    | `--md-contact-chip-pressed-image-color` | The circle background pressed color of the image | `#009587` |
+    | `--md-contact-chip-pressed-letter-color` | The pressed color of the letter for the image | `white` |
+
+    @element md-contact-chip
+    @blurb A chip material design implementation.
+    @homepage http://ardf69.github.io/md-chip/
+    @demo demo/index.html
+-->
+<dom-module id="md-contact-chip">
+    <template>
+        <style>
+            :host {
+                border-radius: 16px;
+                box-sizing: border-box;
+                cursor: pointer;
+                display: inline-block;
+                outline: none;
+
+                --background-color: var(--md-contact-chip-background-color, --paper-grey-300);
+                --color: var(--md-contact-chip-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-image-color, #009587);
+                --letter-color: var(--md-contact-chip-letter-color, white);
+            }
+            :host([focused]):not([pressed]) {
+                @apply(--shadow-elevation-2dp);
+
+                --background-color: var(--md-contact-chip-focused-background-color, --paper-grey-300);
+                --color: var(--md-contact-chip-focused-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-focused-image-color, #009587);
+                --letter-color: var(--md-contact-chip-focused-letter-color, white);
+            }
+            :host([pressed]) {
+                @apply(--shadow-elevation-2dp);
+
+                --background-color: var(--md-contact-chip-background-pressed-color, #d6d6d6);
+                --color: var(--md-contact-chip-pressed-color, --paper-grey-600);
+
+                --image-color: var(--md-contact-chip-pressed-image-color, #009587);
+                --letter-color: var(--md-contact-chip-pressed-letter-color, white);
+            }
+
+            --paper-font-name: {
+                @apply(--paper-font-common-base);
+                @apply(--paper-font-common-nowrap);
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+            };
+
+            #container {
+                display: inline-block;
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                @apply(--shadow-transition);
+                background-color: var(--background-color);
+                border-radius: 16px;
+                box-sizing: border-box;
+                color: var(--color);
+                height: 32px;
+                outline: none;
+                white-space: nowrap;
+                width: auto;
+            }
+            #empty12 {
+                width: 12px;
+                height: 0px
+            }
+            #empty8 {
+                width: 8px;
+                height: 0px
+            }
+            #image {
+                --iron-icon-height: 32px;
+                --iron-icon-width: 32px;
+            }
+            #list {
+                @apply(--layout-vertical);
+            }
+            #name {
+                @apply(--paper-font-name);
+            }
+            #prefix {
+                @apply(--layout-horizontal);
+                @apply(--layout-center-justified);
+                @apply(--layout-center);
+                background-color: var(--image-color);
+                color: var(--letter-color);
+                border-radius: 16px;
+                box-sizing: border-box;
+                height: 32px;
+                width: 32px;
+            }
+        </style>
+
+        <div class="dropdown-trigger" id="container" on-down="_onDown" on-tap="_onTap" on-up="_onUp" tabindex="-1">
+            <div id="prefix">
+                <template is="dom-if" if="[[_image]]">
+                    <iron-icon id="image" src="[[_image]]"></iron-icon>
+                </template>
+                <template is="dom-if" if="[[!_image]]">[[_getLetter(name)]]</template>
+            </div>
+            <div id="empty8">&nbsp;</div>
+            <div id="name">[[name]]</div>
+            <div id="empty12">&nbsp;</div>
+        </div>
+
+        <iron-dropdown id="dropdown">
+            <paper-material class="dropdown-content" elevation="4">
+                <div id="list">
+                    <template is="dom-repeat" items="[[_items]]">
+                        <md-contact-chip-item
+                            _index="[[index]]"
+                            _name="[[name]]"
+                            _removed="{{removed}}"
+                            address="[[item.address]]"
+                            class$="[[_getClass(selected, _selected, _itemPressed, index)]]"
+                            image="[[item.image]]"
+                            on-down="_onItemDown"
+                            on-tap="_onItemTap"
+                            on-up="_onItemUp">
+                        </md-contact-chip-item>
+                    </template>
+                    <template is="dom-if" if="[[!_items.length]]">
+                        <md-contact-chip-item
+                            _index="[[_firstIndex()]]"
+                            _name="[[name]]"
+                            _removed="{{removed}}"
+                            address=""
+                            class="selected"
+                            image="[[image]]"
+                            on-tap="_onItemTap">
+                        </md-contact-chip-item>
+                    </template>
+                </div>
+            </paper-material>
+        </iron-dropdown>
+
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+
+                is: 'md-contact-chip',
+
+                listeners: {
+                    "keyup": "_onKeyup"
+                },
+
+                properties: {
+                    _image: {
+                        type: String,
+                        value: null,
+                    },
+                    _itemsCount: {
+                        type: Number,
+                        value: 0
+                    },
+                    _itemPressed: {
+                        type: Number,
+                        value: -1
+                    },
+                    _selected: {
+                        type: Number,
+                        value: 0,
+                    },
+
+                    /**
+                     * If true, the contact chip has focus.
+                     */
+                    focused: {
+                        notify: true,
+                        readOnly: true,
+                        reflectToAttribute: true,
+                        type: Boolean,
+                        value: false
+                    },
+
+                    /**
+                     * The name of the contact
+                     */
+                    name: {
+                        type: String,
+                        value: null
+                    },
+
+                    /**
+                     * If true, the contact chip is pressed.
+                     */
+                    pressed: {
+                        notify: true,
+                        readOnly: true,
+                        reflectToAttribute: true,
+                        type: Boolean,
+                        value: false
+                    },
+
+                    /**
+                     * The selected md-contact-chip-item index
+                     */
+                    selected: {
+                        notify: true,
+                        observer: '_selectedChanged',
+                        type: Number,
+                        value: -1
+                    },
+
+                    /**
+                     * Set to true/false to hide/show the contact chip
+                     */
+                    removed: {
+                        notify: true,
+                        observer: '_removedChanged',
+                        type: Boolean,
+                        value: false
+                    },
+
+                    /**
+                     * The selected md-contact-chip-item element
+                     */
+                    selectedItem: {
+                        notify: true,
+                        observer: '_selectedItemChanged',
+                        readOnly: true,
+                        type: Object,
+                        value: null
+                    }
+                },
+
+                attached: function() {
+                    this._observer = Polymer.dom(this).observeNodes(this._childNodesChanged.bind(this));
+                    this.listen(this, 'focus', '_focus');
+					this.listen(this, 'blur', '_blur');
+                },
+                attributeChanged: function(name, type) {
+                },
+                detached: function() {
+                    Polymer.dom(this).unobserveNodes(this._observer);
+                    this.unlisten(this, 'focus', '_focus');
+					this.unlisten(this, 'blur', '_blur');
+                },
+                ready: function() {
+                },
+
+                _blur: function() {
+					this._setFocused(false);
+				},
+                _childNodesChanged: function(info) {
+                    var self = this;
+                    var name = this.name;
+
+                    info.removedNodes.forEach(function(node) {
+                        if (node.localName == 'md-contact-chip-item') {
+                            self.unlisten(node, 'address-changed', '_update()');
+                            self.unlisten(node, 'image-changed', '_update()');
+                        }
+                    });
+                    info.addedNodes.forEach(function(node) {
+                        if (node.localName == 'md-contact-chip-item') {
+                            self.listen(node, 'address-changed', '_update()');
+                            self.listen(node, 'image-changed', '_update()');
+                        }
+                    });
+                    this._update();
+                },
+                _firstIndex: function() {
+                    return 0;
+                },
+                _focus: function() {
+					this._setFocused(true);
+				},
+                _getClass: function(selected, _selected, _itemPressed, index) {
+                    var result = '';
+
+                    if (selected === index) {
+                        result = 'selected';
+                    } else if (_itemPressed === index) {
+                        result = 'pressed';
+                    } else if (_selected === index) {
+                        result = 'focused';
+                    }
+
+                    return result;
+                },
+                _getLetter: function(name) {
+                    var result = '';
+
+                    if (name && name.length > 0) {
+                        result = name.toUpperCase().charAt(0);
+                    }
+
+                    return result;
+                },
+                _onDown: function() {
+                    this._setPressed(true);
+                },
+                _onItemDown: function(event) {
+                    this._itemPressed = event.model.index;
+                },
+                _onItemTap: function (event) {
+                    if (
+                        event.model &&
+                        event.model.index !== undefined &&
+                        event.model.index !== null
+                    ) {
+                        this.selected = event.model.index;
+                    }
+                    this.$.dropdown.opened = false;
+                },
+                _onItemUp: function(event) {
+                    this._itemPressed = -1;
+                },
+                _onKeyup: function(event) {
+                    var keyCode = event.keyCode;
+
+                    if (this.$.dropdown.opened) {
+                        if (keyCode === 10 || keyCode === 13) {
+                            // CR o LF
+                            if (-1 < this._selected && this._selected < this._items.length) {
+                                this.selected = this._selected;
+                                this.$.dropdown.opened = false;
+                            }
+                        } else if (keyCode === 38) {
+                            // UP
+                            if (this._selected > -1) {
+                                this._selected--;
+                            }
+                        } else if (keyCode === 40) {
+                            // DOWN
+                            if (this._selected < this._items.length - 1) {
+                                this._selected++;
+                            }
+                        } else if (keyCode === 27) {
+                            // ESC
+                            this.$.dropdown.opened = false;
+                        }
+                    }
+                },
+                _onTap: function() {
+                    this._selected = -1;
+                    this.$.dropdown.opened = true;
+                },
+                _onUp: function() {
+                    this._setPressed(false);
+                },
+                _removedChanged: function() {
+                    this.style.display = this.removed ? 'none': 'inline-block';
+                },
+                _selectedChanged: function() {
+                    if (0 <= this.selected && this.selected < this._items.length) {
+                        this._setSelectedItem(this._items[this.selected]);
+                    } else {
+                        this._setSelectedItem(null);
+                    }
+                },
+                _selectedItemChanged: function() {
+                    if (this.selectedItem && this.selectedItem.image) {
+                        this._image = this.selectedItem.image;
+                    } else {
+                        this._image = null;
+                    }
+                },
+                _update: function() {
+                    var items = this.queryAllEffectiveChildren('md-contact-chip-item');
+
+                    if (
+                        items !== null &&
+                        items !== undefined &&
+                        items.length > 0
+                    ) {
+                        this._items = items;
+                    } else {
+                        this._items = [];
+                    }
+
+                    this._selectedChanged();
+                }
+            });
+        })();
+    </script>
+</dom-module>

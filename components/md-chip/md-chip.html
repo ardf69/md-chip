@@ -1,0 +1,152 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-behaviors/iron-control-state.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<!--
+    ## &lt;md-chip&gt;
+
+    Material design: [Chips](https://material.google.com/components/chips.htm)
+
+    `<md-chip>` implements the material design chip. The following is the example
+    of the `<md-chip>` usage
+
+    ```html
+    <md-chip label="normal"></md-chip>
+    <md-chip label="removable chip" removable></md-chip>
+    ```
+
+    ### Styling
+
+    The following custom properties are available for styling:
+
+    | Custom property | Description | Default |
+    | --- | --- | --- |
+    | `--md-chip-background-color` | Background color | `--paper-grey-300` |
+    | `--md-chip-color` | Foreground color | `--paper-grey-600` |
+    | `--md-chip-remove-color` | Remove button foreground color | `--paper-grey-500` |
+    | `--md-chip-background-color-hover` | Hover background color | `--paper-grey-600` |
+    | `--md-chip-color-hover` | Hover foreground color | `--paper-grey-300` |
+    | `--md-chip-remove-color-hover` | Remove button hover foreground color | `--paper-grey-300` |
+
+    @element md-chip
+    @blurb A chip material design implementation.
+    @homepage http://ardf69.github.io/md-chip/
+    @demo demo/index.html
+-->
+<dom-module id="md-chip">
+    <template>
+        <style>
+			:host {
+				display: inline-block;
+			}
+			:host[removed] {
+				display: none;
+			}
+
+            #container {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                background-color: var(--md-chip-background-color, --paper-grey-300);
+                border-radius: 16px;
+                box-sizing: border-box;
+                color: var(--md-chip-color, --paper-grey-600);
+                height: 32px;
+                white-space: nowrap;
+                width: auto;
+            }
+            #container:hover {
+                background-color: var(--md-chip-background-color-hover, --paper-grey-600);
+                color: var(--md-chip-color-hover, --paper-grey-300);
+            }
+            #container:hover > #remove {
+                color: var(--md-chip-remove-color-hover, --paper-grey-300);
+            }
+            #empty {
+                width: 12px;
+            }
+            #label {
+                font: var(--paper-font-menu);
+            }
+            #remove {
+                --iron-icon-height: 20px;
+                --iron-icon-width: 20px;
+                color: var(--md-chip-remove-color, --paper-grey-500);
+            }
+        </style>
+
+        <div id="container">
+            <div id="empty">&nbsp;</div>
+            <template is="dom-if" if="[[label]]">
+                <div id="label">[[label]]</div>
+            </template>
+            <template is="dom-if" if="[[removable]]">
+                <div style="width:6px; height:0px"></div>
+                <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+                <div style="width:6px; height:0px"></div>
+            </template>
+            <template is="dom-if" if="[[!removable]]">
+                <div id="empty">&nbsp;</div>
+            </template>
+        </div>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+
+                is: 'md-chip',
+
+				behaviors: [
+					Polymer.IronControlState
+				],
+
+                properties: {
+                    /**
+                     * The text to display in the chip
+                     */
+                    label: {
+                        type: String,
+                        value: null
+                    },
+
+                    /**
+                     * Set to true to display the remove button in the chip
+                     */
+                    removable: {
+                        type: Boolean,
+                        value: false
+                    },
+
+                     /**
+                      * Set to true/false to hide/show the chip
+                      */
+                    removed: {
+                        notify: true,
+						reflectToAttribute: true,
+                        type: Boolean,
+                        value: false
+                    }
+                },
+
+                attached: function() {
+                },
+                attributeChanged: function(name, type) {
+                },
+                detached: function() {
+                },
+                ready: function() {
+                },
+
+                _remove: function() {
+                    this.removed = true;
+                }
+            });
+        })();
+    </script>
+</dom-module>
