@@ -66,18 +66,22 @@
             }
 
             #empty {
+				display: inline-block;
                 width: 12px;
             }
             #label {
+				display: inline-block;
                 font: var(--paper-font-menu);
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
             }
             #remove {
+				display: inline-block;
                 --iron-icon-height: 20px;
                 --iron-icon-width: 20px;
                 color: var(--md-chip-remove-color, --paper-grey-500);
+				margin: 0px 6px;
             }
         </style>
 
@@ -86,9 +90,9 @@
             <div id="label">[[label]]</div>
         </template>
         <template is="dom-if" if="[[removable]]">
-            <div style="width:6px; height:0px"></div>
+            <!-- <div style="width:6px; height:0px"></div> -->
             <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
-            <div style="width:6px; height:0px"></div>
+            <!-- <div style="width:6px; height:0px"></div> -->
         </template>
         <template is="dom-if" if="[[!removable]]">
             <div id="empty"></div>
