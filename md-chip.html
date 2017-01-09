@@ -41,21 +41,7 @@
     <template>
         <style>
 			:host {
-				display: block;
-				@apply(--layout-horizontal);
-				@apply(--layout-center);
-				@apply(--layout-nowrap);
-                background-color: var(--md-chip-background-color, --paper-grey-300);
-                border-radius: 16px;
-                box-sizing: border-box;
-                color: var(--md-chip-color, --paper-grey-600);
-                height: 32px;
-				max-width: 100%;
-                white-space: nowrap;
-                width: auto;
-			}
-			:host[removable] > #label {
-				max-width: calc(100% - 44px);
+				display: inline-block;
 			}
 			:host[removed] {
 				display: none;
@@ -68,12 +54,24 @@
                 color: var(--md-chip-remove-color-hover, --paper-grey-300);
             }
 
-            #empty {
-                width: 12px;
-            }
+			#container {
+				display: block;
+				@apply(--layout-horizontal);
+				@apply(--layout-center);
+				@apply(--layout-nowrap);
+                background-color: var(--md-chip-background-color, --paper-grey-300);
+                border-radius: 16px;
+                box-sizing: border-box;
+                color: var(--md-chip-color, --paper-grey-600);
+                height: 32px;
+				padding: 0px 6px;
+				max-width: 100%;
+                /*white-space: nowrap;
+                width: auto;*/
+			}
             #label {
                 font: var(--paper-font-menu);
-				max-width: calc(100% - 12px);
+				margin: 0px 6px;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -82,20 +80,18 @@
                 --iron-icon-height: 20px;
                 --iron-icon-width: 20px;
                 color: var(--md-chip-remove-color, --paper-grey-500);
-				margin: 0px 6px;
+				margin: 0px 6px 0px 0px;
             }
         </style>
 
-        <div id="empty"></div>
-        <template is="dom-if" if="[[label]]">
-            <div id="label">[[label]]</div>
-        </template>
-        <template is="dom-if" if="[[removable]]">
-            <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
-        </template>
-        <template is="dom-if" if="[[!removable]]">
-            <div id="empty"></div>
-        </template>
+		<div id="container">
+	        <template is="dom-if" if="[[label]]">
+	            <div id="label">[[label]]</div>
+	        </template>
+	        <template is="dom-if" if="[[removable]]">
+	            <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
+	        </template>
+		</div>
     </template>
 
     <script>
