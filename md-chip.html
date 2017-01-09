@@ -90,7 +90,7 @@
 
 		<div id="container">
 	        <template is="dom-if" if="[[label]]">
-	            <div id="label" style$="max-width: [[_getMaxWidth(removable)]]px">[[label]]</div>
+	            <div id="label" style$="max-width: calc(100% - [[_getMaxWidth(removable)]]px)">[[label]]</div>
 	        </template>
 	        <template is="dom-if" if="[[removable]]">
 	            <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
