@@ -70,14 +70,11 @@
                 height: 32px;
 				padding: 0px 6px;
 				max-width: 100%;
-                /*white-space: nowrap;
-                width: auto;*/
 			}
             #label {
 				display: block;
                 font: var(--paper-font-menu);
 				margin: 0px 6px;
-				max-width: calc(100% - 12px);
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -87,15 +84,13 @@
                 --iron-icon-height: 20px;
                 --iron-icon-width: 20px;
                 color: var(--md-chip-remove-color, --paper-grey-500);
-				height: 20px;
 				margin: 0px 0px 0px 6px;
-				width: 20px;
             }
         </style>
 
 		<div id="container">
 	        <template is="dom-if" if="[[label]]">
-	            <div id="label">[[label]]</div>
+	            <div id="label" style$="max-width: [[_getMaxWidth(removable)]]px">[[label]]</div>
 	        </template>
 	        <template is="dom-if" if="[[removable]]">
 	            <iron-icon id="remove" icon="cancel" on-tap="_remove"></iron-icon>
@@ -153,6 +148,9 @@
                 ready: function() {
                 },
 
+				_getMaxWidth(removable) {
+					return removable ? 38 : 12;
+				},
                 _remove: function() {
                     this.removed = true;
                 }
