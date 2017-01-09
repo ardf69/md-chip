@@ -47,6 +47,9 @@
 			:host[removed] {
 				display: none;
 			}
+			:host[removable] > #label {
+				max-width: calc(100% - 44px);
+			}
 			:host:hover {
 				background-color: var(--md-chip-background-color-hover, --paper-grey-600);
                 color: var(--md-chip-color-hover, --paper-grey-300);
@@ -74,6 +77,7 @@
 				display: block;
                 font: var(--paper-font-menu);
 				margin: 0px 6px;
+				max-width: calc(100% - 12px);
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
